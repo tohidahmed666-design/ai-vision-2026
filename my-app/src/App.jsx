@@ -3,6 +3,7 @@ import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calenda
 
 const App = () => {
   const registrationLink = "https://forms.gle/mAShra47CuXPvig5A";
+  const mapsLink = "https://www.google.com/maps/search/?api=1&query=G-NTTF+Campus+Gadag";
 
   return (
     <div className="min-h-screen font-sans text-slate-900 selection:bg-blue-100 pb-24">
@@ -54,7 +55,7 @@ const App = () => {
         </div>
       </header>
 
-      {/* Challenges Section - Kept Original Blue/Sky Colors */}
+      {/* Challenges Section */}
       <section className="px-5 py-4">
         <h2 className="text-2xl font-black mb-8 text-center text-slate-800 tracking-tight">Two Day Workshop</h2>
         
@@ -83,6 +84,8 @@ const App = () => {
       {/* Date, Venue and Contact Section */}
       <section className="px-5 py-12 max-w-md mx-auto">
         <div className="flex flex-col gap-3">
+          
+          {/* Date Card */}
           <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm transition-transform active:scale-[0.98]">
             <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
               <Calendar size={20} />
@@ -93,17 +96,41 @@ const App = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm transition-transform active:scale-[0.98]">
-            <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
-              <MapPin size={20} />
+          {/* Location & QR Card */}
+          <div className="bg-white/60 backdrop-blur-sm p-5 rounded-3xl border border-white shadow-sm transition-all">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
+                <MapPin size={20} />
+              </div>
+              <div className="text-left">
+                <p className="text-[10px] uppercase font-bold text-slate-400">Venue</p>
+                <p className="font-bold text-sm text-slate-700">G-NTTF Campus, Gadag</p>
+              </div>
             </div>
-            <div className="text-left">
-              <p className="text-[10px] uppercase font-bold text-slate-400">Venue</p>
-              <p className="font-bold text-sm text-slate-700">G-NTTF Campus, Gadag</p>
+
+            {/* QR Code and Maps Link Area */}
+            <div className="bg-white/80 rounded-2xl p-4 flex flex-col items-center border border-blue-50">
+              <p className="text-[10px] font-bold text-blue-900/40 mb-3 tracking-widest uppercase">Scan for Location</p>
+              
+              {/* Dynamic QR Code for the Maps Link */}
+              <img 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(mapsLink)}`} 
+                alt="Location QR Code" 
+                className="w-32 h-32 mb-4 rounded-lg border-4 border-white shadow-sm"
+              />
+
+              <a 
+                href={mapsLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-blue-600 font-bold text-xs bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors"
+              >
+                Open in Google Maps <ExternalLink size={14} />
+              </a>
             </div>
           </div>
 
-          {/* Contact Details added here */}
+          {/* Contact Details Card */}
           <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm transition-transform active:scale-[0.98]">
             <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
               <Phone size={20} />
