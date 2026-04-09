@@ -1,9 +1,10 @@
 import React from 'react';
-import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calendar, MapPin, ChevronRight, Menu, Phone } from 'lucide-react';
+import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calendar, MapPin, ChevronRight, Menu, Phone, Share2 } from 'lucide-react';
 
 const App = () => {
   const registrationLink = "https://forms.gle/mAShra47CuXPvig5A";
-  const mapsLink = "https://www.google.com/maps/search/?api=1&query=G-NTTF+Campus+Gadag";
+  const mapsLink = "https://maps.google.com/?q=G-NTTF+Gadag"; // Updated to a standard search link
+  const liveSiteLink = "https://g-nttf-ai-vision-2026.vercel.app"; // Your new Vercel URL
 
   return (
     <div className="min-h-screen font-sans text-slate-900 selection:bg-blue-100 pb-24">
@@ -40,7 +41,6 @@ const App = () => {
             </div>
           </div>
           
-          {/* Main Title in Orange */}
           <h1 className="text-5xl md:text-6xl font-black leading-[1.1] tracking-tighter mb-6 text-orange-600">
             AI VISION 2K26
           </h1>
@@ -85,7 +85,6 @@ const App = () => {
       <section className="px-5 py-12 max-w-md mx-auto">
         <div className="flex flex-col gap-3">
           
-          {/* Date Card */}
           <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm transition-transform active:scale-[0.98]">
             <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
               <Calendar size={20} />
@@ -107,30 +106,19 @@ const App = () => {
                 <p className="font-bold text-sm text-slate-700">G-NTTF Campus, Gadag</p>
               </div>
             </div>
-
-            {/* QR Code and Maps Link Area */}
             <div className="bg-white/80 rounded-2xl p-4 flex flex-col items-center border border-blue-50">
               <p className="text-[10px] font-bold text-blue-900/40 mb-3 tracking-widest uppercase">Scan for Location</p>
-              
-              {/* Dynamic QR Code for the Maps Link */}
               <img 
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(mapsLink)}`} 
                 alt="Location QR Code" 
                 className="w-32 h-32 mb-4 rounded-lg border-4 border-white shadow-sm"
               />
-
-              <a 
-                href={mapsLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-blue-600 font-bold text-xs bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors"
-              >
+              <a href={mapsLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-600 font-bold text-xs bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors">
                 Open in Google Maps <ExternalLink size={14} />
               </a>
             </div>
           </div>
 
-          {/* Contact Details Card */}
           <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm transition-transform active:scale-[0.98]">
             <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
               <Phone size={20} />
@@ -145,6 +133,27 @@ const App = () => {
               </div>
             </div>
           </div>
+
+          {/* Web App Share QR Code Card */}
+          <div className="bg-white/60 backdrop-blur-sm p-6 rounded-3xl border border-white shadow-sm mt-8">
+            <div className="flex flex-col items-center text-center">
+               <div className="bg-orange-100 p-2 rounded-xl text-orange-600 mb-3">
+                <Share2 size={20} />
+              </div>
+              <h3 className="text-sm font-bold text-slate-700 mb-1">Share this Website</h3>
+              <p className="text-[11px] text-slate-400 mb-4">Let others join the vision!</p>
+              
+              <div className="bg-white p-3 rounded-2xl border border-orange-50 shadow-inner">
+                <img 
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(liveSiteLink)}`} 
+                  alt="Site QR Code" 
+                  className="w-28 h-28 rounded-lg"
+                />
+              </div>
+              <p className="mt-3 text-[10px] font-mono text-orange-600/60 break-all">{liveSiteLink}</p>
+            </div>
+          </div>
+
         </div>
       </section>
 
