@@ -4,7 +4,7 @@ import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calenda
 const App = () => {
   const registrationLink = "https://forms.gle/mAShra47CuXPvig5A";
   const mapsLink = "https://maps.google.com/?q=G-NTTF+Gadag"; // Updated to a standard search link
-  const liveSiteLink = "https://g-nttf-ai-vision-2026.vercel.app"; // Your new Vercel URL
+  const liveSiteLink = "https://g-nttf-ai-vision-2026-d9p1.vercel.app";
 
   return (
     <div className="min-h-screen font-sans text-slate-900 selection:bg-blue-100 pb-24">
