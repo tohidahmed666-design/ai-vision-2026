@@ -3,8 +3,26 @@ import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calenda
 
 const App = () => {
   const registrationLink = "https://forms.gle/mAShra47CuXPvig5A";
-  const mapsLink = "https://maps.google.com/?q=G-NTTF+Gadag"; // Updated to a standard search link
+  const mapsLink = "https://maps.google.com/?q=G-NTTF+Gadag"; 
   const liveSiteLink = "https://g-nttf-ai-vision-2026-d9p1.vercel.app";
+
+  // Function to trigger native mobile sharing
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'AI VISION 2K26',
+          text: 'Join us for the Two Day Workshop at G-NTTF Campus!',
+          url: liveSiteLink,
+        });
+      } catch (error) {
+        console.log('Error sharing:', error);
+      }
+    } else {
+      // Fallback for desktop browsers
+      alert("Sharing not supported on this browser. You can copy the link manually: " + liveSiteLink);
+    }
+  };
 
   return (
     <div className="min-h-screen font-sans text-slate-900 selection:bg-blue-100 pb-24">
@@ -134,14 +152,18 @@ const App = () => {
             </div>
           </div>
 
-          {/* Web App Share QR Code Card */}
+          {/* Web App Share QR Code Card with Native Sharing */}
           <div className="bg-white/60 backdrop-blur-sm p-6 rounded-3xl border border-white shadow-sm mt-8">
             <div className="flex flex-col items-center text-center">
-               <div className="bg-orange-100 p-2 rounded-xl text-orange-600 mb-3">
-                <Share2 size={20} />
-              </div>
-              <h3 className="text-sm font-bold text-slate-700 mb-1">Share this Website</h3>
-              <p className="text-[11px] text-slate-400 mb-4">Let others join the vision!</p>
+              <button 
+                onClick={handleShare}
+                className="bg-orange-100 p-4 rounded-2xl text-orange-600 mb-3 hover:bg-orange-200 transition-all active:scale-90"
+                title="Share Website"
+              >
+                <Share2 size={24} />
+              </button>
+              <h3 className="text-sm font-bold text-slate-700 mb-1">Share with Friends</h3>
+              <p className="text-[11px] text-slate-400 mb-4">Tap the icon to share via WhatsApp & others</p>
               
               <div className="bg-white p-3 rounded-2xl border border-orange-50 shadow-inner">
                 <img 
@@ -150,7 +172,7 @@ const App = () => {
                   className="w-28 h-28 rounded-lg"
                 />
               </div>
-              <p className="mt-3 text-[10px] font-mono text-orange-600/60 break-all">{liveSiteLink}</p>
+              <p className="mt-3 text-[10px] font-mono text-orange-600/60 break-all uppercase tracking-tight">{liveSiteLink}</p>
             </div>
           </div>
 
