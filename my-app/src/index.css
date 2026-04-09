@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/* 1. Define your Theme Variables for Tailwind v4 */
+@theme {
+  /* Professional Light Blue Palette */
+  --color-bg-site: #f0f7ff;         /* Very light ice blue */
+  --color-accent: #2563eb;          /* Trustworthy royal blue */
+  --color-accent-bg: #dbeafe;       /* Light blue for badges */
+  --color-accent-border: #bfdbfe;
+  
+  --color-text-main: #334155;       /* Slate gray for readability */
+  --color-text-h: #0f172a;          /* Deep navy for headings */
+  --color-border: #e2e8f0;          /* Soft border color */
+  --color-social-bg: #ffffff;
+}
+
+/* 2. Global Resets */
+@layer base {
+  body {
+    /* Adding a subtle gradient background to the entire body */
+    @apply m-0 p-0 antialiased min-h-screen;
+    background: radial-gradient(circle at top right, #e0f2fe, #f0f7ff 50%, #ffffff 100%);
+    color: var(--color-text-main);
+  }
+  #root {
+    @apply mx-auto flex min-h-screen w-full max-w-[1126px] flex-col border-x border-[var(--color-border)] text-center;
+  }
+}
+
+/* 3. Custom Components & Logic */
+@layer components {
+  .counter {
+    @apply inline-flex items-center text-base font-mono mb-6 transition-all duration-300;
+    @apply px-3 py-1.5 rounded-md border-2 border-transparent;
+    color: var(--color-accent);
+    background: var(--color-accent-bg);
+
+    &:hover {
+      border-color: var(--color-accent-border);
+    }
+    
+    &:focus-visible {
+      @apply outline-none ring-2 ring-offset-2;
+      --tw-ring-color: var(--color-accent);
+    }
+  }
+
+  .hero {
+    @apply relative flex justify-center items-center h-[200px] mb-8;
+
+    .base, .framework, .vite {
+      @apply absolute inset-x-0 mx-auto transition-transform duration-500;
+    }
+
+    .base {
+      @apply relative z-0 w-[170px];
+    }
+
+    .framework {
+      @apply z-[1] top-[34px] h-7;
+      transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
+    }
+
+    .vite {
+      @apply z-0 top-[107px] h-[26px] w-auto;
+      transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8);
+    }
+  }
+
+  #center {
+    @apply flex flex-col flex-grow items-center justify-center gap-[25px];
+    
+    @media (max-width: 1024px) {
+      @apply gap-[18px] px-5 py-8;
+    }
+  }
+
+  #next-steps {
+    @apply flex border-t border-[var(--color-border)] text-left;
+    
+    & > div {
+      @apply flex-1 p-8;
+      @media (max-width: 1024px) {
+        @apply p-6;
+      }
+    }
+
+    .icon {
+      @apply mb-4 w-[22px] h-[22px];
+    }
+
+    @media (max-width: 1024px) {
+      @apply flex-col text-center;
+    }
+  }
+
+  #docs {
+    @apply border-r border-[var(--color-border)];
+
+    @media (max-width: 1024px) {
+      @apply border-r-0 border-b border-[var(--color-border)];
+    }
+  }
+
+  #next-steps ul {
+    @apply list-none p-0 flex flex-wrap gap-2 mt-8;
+
+    a {
+      @apply flex items-center gap-2 px-3 py-1.5 text-base no-underline rounded-md transition-shadow duration-300;
+      color: var(--color-text-h);
+      background: var(--color-social-bg);
+
+      &:hover {
+        @apply shadow-lg;
+      }
+
+      .button-icon {
+        @apply w-[18px] h-[18px];
+      }
+    }
+
+    @media (max-width: 1024px) {
+      @apply mt-5 justify-center;
+
+      li {
+        @apply flex-[1_1_calc(50%-8px)];
+      }
+
+      a {
+        @apply w-full justify-center;
+      }
+    }
+  }
+
+  #spacer {
+    @apply h-[88px] border-t border-[var(--color-border)];
+    @media (max-width: 1024px) {
+      @apply h-12;
+    }
+  }
+
+  .ticks {
+    @apply relative w-full;
+
+    &::before, &::after {
+      content: '';
+      @apply absolute -top-[4.5px] border-[5px] border-transparent;
+    }
+
+    &::before {
+      @apply left-0 border-l-[var(--color-border)];
+    }
+    
+    &::after {
+      @apply right-0 border-r-[var(--color-border)];
+    }
+  }
+}
