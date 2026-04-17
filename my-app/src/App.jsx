@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calendar, MapPin, ChevronRight, Menu, Phone, Share2 } from 'lucide-react';
 
 const App = () => {
-  const registrationLink = "https://forms.gle/mAShra47CuXPvig5A";
+  const registrationLink = "https://docs.google.com/forms/d/e/1FAIpQLSdQTk_xGc7W456aQrPe2gmilPXX15PmTmXrjW7oOh3_BTZhWg/viewform";
   const mapsLink = "https://maps.google.com/?q=G-NTTF+Gadag"; 
   const liveSiteLink = "https://g-nttf-ai-vision-2026-d9p1.vercel.app";
 
