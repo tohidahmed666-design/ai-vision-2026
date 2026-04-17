@@ -45,9 +45,9 @@ const App = () => {
           <div className="flex justify-center mb-6">
             <div className="relative p-2 bg-white/30 backdrop-blur-sm rounded-2xl border border-white/50 shadow-xl shadow-blue-100/50">
               <img 
-                src="/logo.png" 
+                src="/logo-2.png" 
                 alt="AI Vision Logo" 
-                className="h-20 w-auto object-contain"
+                className="h-24 w-auto object-contain drop-shadow-sm" 
                 onError={(e) => {
                   e.target.onerror = null; 
                   e.target.src = "https://via.placeholder.com/80?text=LOGO";
