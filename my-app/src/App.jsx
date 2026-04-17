@@ -34,9 +34,6 @@ const App = () => {
             <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center text-white text-xs shadow-lg shadow-orange-200">AI</div>
             AI VISION
           </div>
-          <button className="p-2 text-blue-900 hover:bg-blue-50 rounded-xl transition">
-            <Menu size={24} />
-          </button>
         </div>
       </nav>
 
@@ -99,20 +96,10 @@ const App = () => {
         </div>
       </section>
 
-      {/* Date, Venue and Contact Section */}
+      {/* Venue and Contact Section (Date Removed) */}
       <section className="px-5 py-12 max-w-md mx-auto">
         <div className="flex flex-col gap-3">
           
-          <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm transition-transform active:scale-[0.98]">
-            <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
-              <Calendar size={20} />
-            </div>
-            <div className="text-left">
-              <p className="text-[10px] uppercase font-bold text-slate-400">Date</p>
-              <p className="font-bold text-sm text-slate-700">17th & 18th April</p>
-            </div>
-          </div>
-
           {/* Location & QR Card */}
           <div className="bg-white/60 backdrop-blur-sm p-5 rounded-3xl border border-white shadow-sm transition-all">
             <div className="flex items-start gap-4 mb-4">
