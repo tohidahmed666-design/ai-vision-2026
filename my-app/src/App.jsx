@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calendar, MapPin, ChevronRight, Menu, Phone, Share2 } from 'lucide-react';
 
 const App = () => {
@@ -6,7 +6,14 @@ const App = () => {
   const mapsLink = "https://maps.google.com/?q=G-NTTF+Gadag"; 
   const liveSiteLink = "https://g-nttf-ai-vision-2026-d9p1.vercel.app";
 
-  // Function to trigger native mobile sharing
+  // New Section: Specifically updates the browser tab icon to logo-2.png
+  useEffect(() => {
+    const link = document.querySelector("link[rel~='icon']") || document.createElement('link');
+    link.rel = 'icon';
+    link.href = '/logo-2.png'; // Using your new upscaled icon for the tab
+    document.getElementsByTagName('head')[0].appendChild(link);
+  }, []);
+
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -19,7 +26,6 @@ const App = () => {
         console.log('Error sharing:', error);
       }
     } else {
-      // Fallback for desktop browsers
       alert("Sharing not supported on this browser. You can copy the link manually: " + liveSiteLink);
     }
   };
@@ -27,7 +33,6 @@ const App = () => {
   return (
     <div className="min-h-screen font-sans text-slate-900 selection:bg-blue-100 pb-24">
       
-      {/* Navigation - Orange Accent on Logo only */}
       <nav className="fixed top-0 w-full z-50 bg-white/40 backdrop-blur-md border-b border-blue-100/50">
         <div className="flex items-center justify-between px-5 h-16 max-w-[1126px] mx-auto">
           <div className="font-black text-xl tracking-tighter flex items-center gap-2 text-orange-600">
@@ -37,17 +42,17 @@ const App = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <header className="relative pt-32 pb-8 px-6 text-center">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-400/10 blur-[120px] rounded-full -z-10"></div>
         
         <div className="max-w-md mx-auto">
           <div className="flex justify-center mb-6">
             <div className="relative p-2 bg-white/30 backdrop-blur-sm rounded-2xl border border-white/50 shadow-xl shadow-blue-100/50">
+              {/* Keeping logo.png exactly as it was */}
               <img 
-                src="/logo-2.png" 
+                src="/logo.png" 
                 alt="AI Vision Logo" 
-                className="h-24 w-auto object-contain drop-shadow-sm" 
+                className="h-20 w-auto object-contain"
                 onError={(e) => {
                   e.target.onerror = null; 
                   e.target.src = "https://via.placeholder.com/80?text=LOGO";
@@ -70,42 +75,20 @@ const App = () => {
         </div>
       </header>
 
-      {/* Challenges Section */}
       <section className="px-5 py-4">
         <h2 className="text-2xl font-black mb-8 text-center text-slate-800 tracking-tight">Two Day Workshop</h2>
-        
         <div className="flex flex-col gap-6 max-w-md mx-auto">
-          <MobileCard 
-            icon={<Cpu />} 
-            title="AI Video Generation." 
-            desc="Create compelling video content using AI tools and techniques."
-            color="bg-blue-600"
-          />
-          <MobileCard 
-            icon={<MessageSquare />} 
-            title="ChatGPT Prompting." 
-            desc="Solve engineering problems using advanced LLM logic."
-            color="bg-sky-500"
-          />
-          <MobileCard 
-            icon={<Video />} 
-            title="AI Tool Awareness." 
-            desc="Learn about the responsible and effective use of AI technologies."
-            color="bg-indigo-500"
-          />
+          <MobileCard icon={<Cpu />} title="AI Video Generation." desc="Create compelling video content using AI tools and techniques." color="bg-blue-600" />
+          <MobileCard icon={<MessageSquare />} title="ChatGPT Prompting." desc="Solve engineering problems using advanced LLM logic." color="bg-sky-500" />
+          <MobileCard icon={<Video />} title="AI Tool Awareness." desc="Learn about the responsible and effective use of AI technologies." color="bg-indigo-500" />
         </div>
       </section>
 
-      {/* Venue and Contact Section (Date Removed) */}
       <section className="px-5 py-12 max-w-md mx-auto">
         <div className="flex flex-col gap-3">
-          
-          {/* Location & QR Card */}
           <div className="bg-white/60 backdrop-blur-sm p-5 rounded-3xl border border-white shadow-sm transition-all">
             <div className="flex items-start gap-4 mb-4">
-              <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
-                <MapPin size={20} />
-              </div>
+              <div className="bg-blue-100 p-2 rounded-xl text-blue-600"><MapPin size={20} /></div>
               <div className="text-left">
                 <p className="text-[10px] uppercase font-bold text-slate-400">Venue</p>
                 <p className="font-bold text-sm text-slate-700">G-NTTF Campus, Gadag</p>
@@ -125,9 +108,7 @@ const App = () => {
           </div>
 
           <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm transition-transform active:scale-[0.98]">
-            <div className="bg-blue-100 p-2 rounded-xl text-blue-600">
-              <Phone size={20} />
-            </div>
+            <div className="bg-blue-100 p-2 rounded-xl text-blue-600"><Phone size={20} /></div>
             <div className="text-left">
               <p className="text-[10px] uppercase font-bold text-slate-400">Contact</p>
               <div className="flex flex-col">
@@ -139,34 +120,22 @@ const App = () => {
             </div>
           </div>
 
-          {/* Web App Share QR Code Card with Native Sharing */}
           <div className="bg-white/60 backdrop-blur-sm p-6 rounded-3xl border border-white shadow-sm mt-8">
             <div className="flex flex-col items-center text-center">
-              <button 
-                onClick={handleShare}
-                className="bg-orange-100 p-4 rounded-2xl text-orange-600 mb-3 hover:bg-orange-200 transition-all active:scale-90"
-                title="Share Website"
-              >
+              <button onClick={handleShare} className="bg-orange-100 p-4 rounded-2xl text-orange-600 mb-3 hover:bg-orange-200 transition-all active:scale-90" title="Share Website">
                 <Share2 size={24} />
               </button>
               <h3 className="text-sm font-bold text-slate-700 mb-1">Share with Friends</h3>
               <p className="text-[11px] text-slate-400 mb-4">Tap the icon to share via WhatsApp & others</p>
-              
               <div className="bg-white p-3 rounded-2xl border border-orange-50 shadow-inner">
-                <img 
-                  src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(liveSiteLink)}`} 
-                  alt="Site QR Code" 
-                  className="w-28 h-28 rounded-lg"
-                />
+                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(liveSiteLink)}`} alt="Site QR Code" className="w-28 h-28 rounded-lg" />
               </div>
               <p className="mt-3 text-[10px] font-mono text-orange-600/60 break-all uppercase tracking-tight">{liveSiteLink}</p>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* Fixed Footer Register Button */}
       <div className="fixed bottom-0 left-0 w-full p-4 bg-white/60 backdrop-blur-md border-t border-blue-100 z-50">
         <div className="max-w-md mx-auto">
           <a href={registrationLink} target="_blank" rel="noopener noreferrer" className="block w-full">
