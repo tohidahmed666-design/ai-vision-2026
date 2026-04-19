@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calendar, MapPin, ChevronRight, Menu, Phone, Share2 } from 'lucide-react';
+import { Trophy, Cpu, MessageSquare, Video, ExternalLink, GraduationCap, Calendar, MapPin, ChevronRight, Menu, Phone, Share2, Sparkles, Zap, ShieldCheck } from 'lucide-react';
 
 const App = () => {
   const registrationLink = "https://docs.google.com/forms/d/e/1FAIpQLSdQTk_xGc7W456aQrPe2gmilPXX15PmTmXrjW7oOh3_BTZhWg/viewform";
   const mapsLink = "https://maps.google.com/?q=G-NTTF+Gadag"; 
   const liveSiteLink = "https://g-nttf-ai-vision-2026-d9p1.vercel.app";
 
-  // New Section: Specifically updates the browser tab icon to logo-2.png
+  // Dynamic Favicon Update Logic
   useEffect(() => {
     const link = document.querySelector("link[rel~='icon']") || document.createElement('link');
     link.rel = 'icon';
-    link.href = '/logo-2.png'; // Using your new upscaled icon for the tab
+    link.href = '/logo-2.png?v=1'; // Cache-busting version for logo-2
     document.getElementsByTagName('head')[0].appendChild(link);
   }, []);
 
@@ -33,6 +33,7 @@ const App = () => {
   return (
     <div className="min-h-screen font-sans text-slate-900 selection:bg-blue-100 pb-24">
       
+      {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/40 backdrop-blur-md border-b border-blue-100/50">
         <div className="flex items-center justify-between px-5 h-16 max-w-[1126px] mx-auto">
           <div className="font-black text-xl tracking-tighter flex items-center gap-2 text-orange-600">
@@ -42,13 +43,13 @@ const App = () => {
         </div>
       </nav>
 
+      {/* Hero Section */}
       <header className="relative pt-32 pb-8 px-6 text-center">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-400/10 blur-[120px] rounded-full -z-10"></div>
         
         <div className="max-w-md mx-auto">
           <div className="flex justify-center mb-6">
             <div className="relative p-2 bg-white/30 backdrop-blur-sm rounded-2xl border border-white/50 shadow-xl shadow-blue-100/50">
-              {/* Keeping logo.png exactly as it was */}
               <img 
                 src="/logo.png" 
                 alt="AI Vision Logo" 
@@ -75,6 +76,7 @@ const App = () => {
         </div>
       </header>
 
+      {/* Workshop Modules */}
       <section className="px-5 py-4">
         <h2 className="text-2xl font-black mb-8 text-center text-slate-800 tracking-tight">Two Day Workshop</h2>
         <div className="flex flex-col gap-6 max-w-md mx-auto">
@@ -84,6 +86,27 @@ const App = () => {
         </div>
       </section>
 
+      {/* New: Key Highlights Section */}
+      <section className="px-5 py-12 bg-slate-50/50 mt-8">
+        <div className="max-w-md mx-auto text-center">
+          <h2 className="text-xl font-black mb-6 text-slate-800 tracking-tight flex items-center justify-center gap-2">
+            <Sparkles className="text-orange-500" size={20} /> Event Highlights
+          </h2>
+          <div className="grid grid-cols-1 gap-3 text-sm font-semibold text-slate-600">
+            <div className="flex items-center gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm transition-transform active:scale-95">
+              <Zap className="text-orange-500" size={18} /> Hands-on Practical Sessions
+            </div>
+            <div className="flex items-center gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm transition-transform active:scale-95">
+              <Trophy className="text-blue-600" size={18} /> Participation Certificates
+            </div>
+            <div className="flex items-center gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm transition-transform active:scale-95">
+              <GraduationCap className="text-indigo-600" size={18} /> Direct Learning from Tech Leads
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Venue and Contact Section */}
       <section className="px-5 py-12 max-w-md mx-auto">
         <div className="flex flex-col gap-3">
           <div className="bg-white/60 backdrop-blur-sm p-5 rounded-3xl border border-white shadow-sm transition-all">
@@ -136,6 +159,7 @@ const App = () => {
         </div>
       </section>
 
+      {/* Fixed Footer Register Button */}
       <div className="fixed bottom-0 left-0 w-full p-4 bg-white/60 backdrop-blur-md border-t border-blue-100 z-50">
         <div className="max-w-md mx-auto">
           <a href={registrationLink} target="_blank" rel="noopener noreferrer" className="block w-full">
@@ -146,9 +170,19 @@ const App = () => {
         </div>
       </div>
 
-      <footer className="py-12 text-center opacity-50">
+      <footer className="py-12 text-center opacity-80">
         <GraduationCap size={24} className="mx-auto mb-2 text-blue-900" />
-        <p className="text-[10px] font-bold uppercase tracking-widest text-blue-900">G-NTTF • Gadag</p>
+        <p className="text-[10px] font-bold uppercase tracking-widest text-blue-900 mb-6">G-NTTF • Gadag</p>
+        
+        {/* Technical Watermark Section */}
+        <div className="flex flex-col items-center">
+          <span className="text-[9px] uppercase tracking-[0.3em] text-slate-400 font-black mb-1">
+            Technical Project Lead
+          </span>
+          <p className="text-sm font-semibold text-slate-700 bg-white/50 px-6 py-2 rounded-full border border-blue-50 inline-block shadow-sm">
+            Developed by <span className="font-black text-orange-600">Savita Sanadi</span>
+          </p>
+        </div>
       </footer>
     </div>
   );
